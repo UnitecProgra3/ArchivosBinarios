@@ -10,34 +10,41 @@ int main()
 
     for(int i=0;i<3;i++)
     {
-        char str[10] = "";
+        char usuario[10] = "";
         cout<<"Usuario: ";
-        cin>>str;
-        out.write(str,10);
+        cin>>usuario;
+        out.write(usuario,10);
 
-        int num=0;
+        int score=0;
         cout<<"Score: ";
-        cin>>num;
-        out.write((char*)&num,sizeof(int));
+        cin>>score;
+        out.write((char*)&score,sizeof(int));
     }
 
     out.close();
 
     ifstream in("archivo");
 
+    int mayor = 0;
+
     for(int i=0;i<3;i++)
     {
-        char *str = new char(0);
-        in.read(str,10);
+        char *usuario = new char(0);
+        in.read(usuario,10);
 
-        int temp;
-        in.read((char*)&temp,sizeof(int));
+        int score;
+        in.read((char*)&score,sizeof(int));
 
-        cout<<temp<<endl;
-        cout<<str<<endl;
+        if(mayor<score)
+        {
+            mayor = score;
+        }
+
+//        cout<<usuario<<endl;
+//        cout<<score<<endl;
     }
 
-    cout<<"Mayor score: XXXX"<<endl;
+    cout<<"Mayor score: "<<mayor<<endl;
 
     return 0;
 }
